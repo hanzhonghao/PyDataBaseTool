@@ -13,7 +13,7 @@ BlackListed = 0
 WhiteListed = 1
 EntryDate = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
-def main():
+def initDB():
     global mssql
     mssql = DB_helper.MSSQL(server, user, password, database)
 
@@ -34,12 +34,13 @@ def getWhiteListAndInsertDB():
             i = i + 1
             NMAID=row[0]
             UserID=row[1]
+            print(' ')
             print('NMAID : '+NMAID + '     UserID : '+UserID )
             insert(NMAID,UserID)
             print('Insert DB successful !  Insert ',i,' times' )
+    f.close()
 
 if __name__ == '__main__':
-    main()
+    initDB()
     getWhiteListAndInsertDB()
-    # insert()
     # query()
